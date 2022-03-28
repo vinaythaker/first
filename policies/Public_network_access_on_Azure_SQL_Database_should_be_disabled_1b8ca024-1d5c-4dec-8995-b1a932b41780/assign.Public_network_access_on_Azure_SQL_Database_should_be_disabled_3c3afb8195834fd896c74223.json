@@ -1,0 +1,25 @@
+{
+ "sku": {
+  "name": "A0",
+  "tier": "Free"
+ },
+ "properties": {
+  "displayName": "Public network access on Azure SQL Database should be disabled",
+  "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/1b8ca024-1d5c-4dec-8995-b1a932b41780",
+  "scope": "/subscriptions/237fd56a-b684-45b7-adb8-ce3414009e13",
+  "notScopes": [],
+  "parameters": {},
+  "metadata": {
+   "assignedBy": "f8922df9-1040-4f96-8149-228477d002f1 8ad1ab51-be02-496b-9858-64b3ae5ea1d3",
+   "parameterScopes": {},
+   "createdBy": "bd61b225-a49d-432f-9e41-34ed02fa6f25",
+   "createdOn": "2022-03-28T02:00:49.9462913Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "enforcementMode": "Default"
+ },
+ "id": "/subscriptions/237fd56a-b684-45b7-adb8-ce3414009e13/providers/Microsoft.Authorization/policyAssignments/3c3afb8195834fd896c74223",
+ "type": "Microsoft.Authorization/policyAssignments",
+ "name": "3c3afb8195834fd896c74223"
+}

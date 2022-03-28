@@ -1,0 +1,266 @@
+name: manage-azure-policy-2b06a771
+on:
+  workflow_dispatch:
+    inputs:
+      remarks:
+        description: 'Reason for triggering the workflow run'
+        required: false
+        default: 'Updating Azure Policies'
+
+
+## Uncomment the following if you wish to automatically trigger workflow run with every commit
+#
+#  push:
+#    paths:
+#      - 'policies/Cognitive_Services_accounts_should_restrict_network_access_037eea7a-bd0a-46c5-9a66-03aea78705d3/**'
+#      - 'policies/Cognitive_Services_accounts_should_disable_public_network_access_0725b4dd-7e76-479c-a735-68e7ee23d5ca/**'
+#      - 'policies/Configure_Data_Factories_to_disable_public_network_access_08b1442b-7789-4130-8506-4f99a97226a7/**'
+#      - 'policies/Adaptive_network_hardening_recommendations_should_be_applied_on_internet_facing_virtual_machines_08e6af2d-db70-460a-bfe9-d5bd474ba9d6/**'
+#      - 'policies/Deploy_a_flow_log_resource_with_target_network_security_group_0db34a60-64f4-4bf6-bd44-f95c16cf34b9/**'
+#      - 'policies/Modify_-_Configure_Azure_File_Sync_to_disable_public_network_access_0e07b2e9-6cd9-4c40-9ccb-52817b95133b/**'
+#      - 'policies/Public_network_access_should_be_disabled_for_Container_registries_0fdf0491-d080-4575-b627-ad0e843cba0f/**'
+#      - 'policies/Modify_-_Configure_Azure_IoT_Hubs_to_disable_public_network_access_114eec6e-5e59-4bad-999d-6eceeb39d582/**'
+#      - 'policies/SQL_Server_Integration_Services_integration_runtimes_on_Azure_Data_Factory_should_be_joined_to_a_virtual_network_0088bc63-6dee-4a9c-9d29-91cfdc848952/**'
+#      - 'policies/_Preview_Network_traffic_data_collection_agent_should_be_installed_on_Linux_virtual_machines_04c4380f-3fae-46e8-96c9-30193528f602/**'
+#      - 'policies/Kubernetes_cluster_pods_should_only_use_approved_host_network_and_port_range_82985f06-dc18-4a48-bc1c-b9f4f0098cfe/**'
+#      - 'policies/Public_network_access_should_be_disabled_for_MariaDB_servers_fdccbe47-f3e3-4213-ad5d-ea459b2fa077/**'
+#      - 'policies/Azure_Event_Grid_domains_should_disable_public_network_access_f8f774be-6aee-492a-9e29-486ef81f3a68/**'
+#      - 'policies/Internet-facing_virtual_machines_should_be_protected_with_network_security_groups_f6de0be7-9a8a-4b8a-b349-43cf02d22f7c/**'
+#      - 'policies/Virtual_networks_should_use_specified_virtual_network_gateway_f1776c76-f58c-4245-a8d0-2b207198dc8b/**'
+#      - 'policies/API_Management_services_should_use_a_virtual_network_ef619a2c-cc4d-4d03-b2ba-8c94a834d85b/**'
+#      - 'policies/Azure_Cognitive_Search_services_should_disable_public_network_access_ee980b6d-0eca-4501-8d54-f6290fd512c3/**'
+#      - 'policies/Key_Vault_should_use_a_virtual_network_service_endpoint_ea4d6841-2173-4317-9747-ff522a45120f/**'
+#      - 'policies/Configure_network_security_groups_to_enable_traffic_analytics_e920df7f-9a64-4066-9b58-52684c02a091/**'
+#      - 'policies/Subnets_should_be_associated_with_a_Network_Security_Group_e71308d3-144b-4262-b144-efdc3cc90517/**'
+#      - 'policies/Cosmos_DB_should_use_a_virtual_network_service_endpoint_e0a2b1a3-f7f9-4569-807f-2a9edebdf4d9/**'
+#      - 'policies/MariaDB_server_should_use_a_virtual_network_service_endpoint_dfbd9a64-6114-48de-a47d-90574dc2e489/**'
+#      - 'policies/API_Management_services_should_disable_public_network_access_df73bd95-24da-4a4f-96b9-4e8b94b402bd/**'
+#      - 'policies/Configure_Azure_Arc_Private_Link_Scopes_to_disable_public_network_access_de0bc8ea-76e2-4fe2-a288-a07556d0e9c4/**'
+#      - 'policies/Configure_Azure_Application_Insights_components_to_disable_public_network_access_for_log_ingestion_and_querying_dddfa1af-dcd6-42f4-b5b0-e1db01e0b405/**'
+#      - 'policies/Configure_CosmosDB_accounts_to_disable_public_network_access_da69ba51-aaf1-41e5-8651-607cd0b37088/**'
+#      - 'policies/Public_network_access_should_be_disabled_for_MySQL_servers_d9844e8a-1437-4aeb-a32c-0c992f056095/**'
+#      - 'policies/IoT_Hub_device_provisioning_service_instances_should_disable_public_network_access_d82101f3-f3ce-4fc5-8708-4c09f4009546/**'
+#      - 'policies/Windows_machines_should_meet_requirements_for_Security_Options_-_Microsoft_Network_Client_d6c69680-54f0-4349-af10-94dd05f4225e/**'
+#      - 'policies/Event_Hub_should_use_a_virtual_network_service_endpoint_d63edb4a-c612-454d-b47d-191a724fcbf0/**'
+#      - 'policies/Virtual_machines_should_be_connected_to_an_approved_virtual_network_d416745a-506c-48b6-8ab1-83cb814bcaa3/**'
+#      - 'policies/Configure_Azure_Log_Analytics_workspaces_to_disable_public_network_access_for_log_ingestion_and_querying_d3ba9c42-9dd5-441a-957c-274031c750c0/**'
+#      - 'policies/Container_registries_should_not_allow_unrestricted_network_access_d0793b48-0edc-4296-a390-4c75d1bdfd71/**'
+#      - 'policies/Windows_machines_should_meet_requirements_for_Security_Options_-_Microsoft_Network_Server_caf2d518-f029-4f6b-833b-d7081702f253/**'
+#      - 'policies/Azure_HDInsight_clusters_should_be_injected_into_a_virtual_network_b0ab5b05-1c98-40f7-bb9e-dc568e41b501/**'
+#      - 'policies/Management_ports_of_virtual_machines_should_be_protected_with_just-in-time_network_access_control_b0f33259-77d7-4c9e-aac6-3aabcfae693c/**'
+#      - 'policies/Public_network_access_should_be_disabled_for_PostgreSQL_servers_b52376f7-9612-48a1-81cd-1ffe4b61032c/**'
+#      - 'policies/Non-internet-facing_virtual_machines_should_be_protected_with_network_security_groups_bb91dfba-c30d-4263-9add-9c2384e659a6/**'
+#      - 'policies/Azure_Web_PubSub_Service_should_disable_public_network_access_bf45113f-264e-4a87-88f9-29ac8a0aca6a/**'
+#      - 'policies/Flow_logs_should_be_configured_for_every_network_security_group_c251913d-7d24-4958-af87-478ed3b9ba41/**'
+#      - 'policies/_Preview_Container_Registry_should_use_a_virtual_network_service_endpoint_c4857be7-912a-4c75-87e6-e30292bcdf78/**'
+#      - 'policies/Public_network_access_should_be_disabled_for_MySQL_flexible_servers_c9299215-ae47-4f50-9c54-8a392f68a052/**'
+#      - 'policies/Network_Watcher_should_be_enabled_b6e2945c-0b7b-40f5-9233-7a5323b5cdc6/**'
+#      - 'policies/Deploy_Diagnostic_Settings_for_Network_Security_Groups_c9c29499-c1d1-4195-99bd-2ec9e3a9dc89/**'
+#      - 'policies/Azure_Spring_Cloud_should_use_network_injection_af35e2a4-ef96-44e7-a9ae-853dd97032c4/**'
+#      - 'policies/SQL_Server_should_use_a_virtual_network_service_endpoint_ae5d2f14-d830-42b6-9899-df6cfe9c71a3/**'
+#      - 'policies/_Preview_Configure_key_vaults_to_disable_public_network_access_ac673a9a-f77d-4846-b2d8-a57f8e1c01dc/**'
+#      - 'policies/Deploy_network_watcher_when_virtual_networks_are_created_a9b99dd8-06c5-4317-8629-9d86a3c6e7d9/**'
+#      - 'policies/Configure_Container_registries_to_disable_public_network_access_a3701552-92ea-433e-9d17-33b7f1208fc9/**'
+#      - 'policies/Configure_Azure_Machine_Learning_workspaces_to_disable_public_network_access_a10ee784-7409-4941-b091-663697637c0f/**'
+#      - 'policies/All_network_ports_should_be_restricted_on_network_security_groups_associated_to_your_virtual_machine_9daedab3-fb2d-461e-b861-71790eead4f6/**'
+#      - 'policies/Configure_Azure_Cognitive_Search_services_to_disable_public_network_access_9cee519f-d9c1-4fd9-9f79-24ec3449ed30/**'
+#      - 'policies/Virtual_network_injection_should_be_enabled_for_Azure_Data_Explorer_9ad2fd1f-b25f-47a2-aa01-1a5a779e6413/**'
+#      - 'policies/Configure_diagnostic_settings_for_Azure_Network_Security_Groups_to_Log_Analytics_workspace_98a2e215-5382-489e-bd29-32e7190a39ba/**'
+#      - 'policies/Automation_accounts_should_disable_public_network_access_955a914f-bf86-4f0e-acd5-e0766b0efcb6/**'
+#      - 'policies/Virtual_networks_should_be_protected_by_Azure_DDoS_Protection_Standard_94de2ad3-e0c1-4caf-ad78-5d47bbc83d3d/**'
+#      - 'policies/Azure_Media_Services_accounts_should_disable_public_network_access_8bfe3603-0888-404a-87ff-5c1b6b4cc5e3/**'
+#      - 'policies/Azure_Container_Instance_container_group_should_deploy_into_a_virtual_network_8af8f826-edcb-4178-b35f-851ea6fea615/**'
+#      - 'policies/Azure_Arc_Private_Link_Scopes_should_disable_public_network_access_898f2439-3333-4713-af25-f1d78bc50556/**'
+#      - 'policies/Modify_-_Configure_Azure_Event_Grid_domains_to_disable_public_network_access_898e9824-104c-4965-8e0e-5197588fa5d4/**'
+#      - 'policies/Network_interfaces_should_disable_IP_forwarding_88c0b9da-ce96-4b03-9635-f29a937e2900/**'
+#      - 'policies/_Preview_Configure_Azure_Key_Vault_Managed_HSM_to_disable_public_network_access_84d327c3-164a-4685-b453-900478614456/**'
+#      - 'policies/Configure_IoT_Hub_device_provisioning_service_instances_to_disable_public_network_access_859dfc91-ea35-43a6-8256-31271c363794/**'
+#      - 'policies/Managed_disks_should_disable_public_network_access_8405fdab-1faf-48aa-b702-999c9c172094/**'
+#      - 'policies/Configure_managed_disks_to_disable_public_network_access_8426280e-b5be-43d9-979e-653d12a08638/**'
+#      - 'policies/Network_interfaces_should_not_have_public_IPs_83a86a26-fd1f-447c-b59d-e51f44264114/**'
+#      - 'policies/Configure_App_Services_to_disable_public_network_access_81dff7c0-4020-4b58-955d-c076a2136b56/**'
+#      - 'policies/Azure_Cache_for_Redis_should_reside_within_a_virtual_network_7d092e0a-7acd-40d2-a975-dca21cae48c4/**'
+#      - 'policies/Configure_API_Management_services_to_disable_public_network_access_7ca8c8ac-3a6e-493d-99ba-c5fa35347ff2/**'
+#      - 'policies/Azure_Cosmos_DB_should_disable_public_network_access_797b37f7-06b8-444c-b1ad-fc62867f335a/**'
+#      - 'policies/Audit_Azure_Machine_Learning_Compute_Cluster_and_Instance_is_behind_virtual_network_7804b5c7-01dc-4723-969b-ae300cc07ff1/**'
+#      - 'policies/Virtual_network_firewall_rule_on_Azure_SQL_Database_should_be_enabled_to_allow_traffic_from_the_specified_subnet_77e8b146-0078-4fb2-b002-e112381199f0/**'
+#      - 'policies/Public_network_access_should_be_disabled_for_Batch_accounts_74c5a0ae-5e48-4738-b093-65e23a060488/**'
+#      - 'policies/API_Management_service_should_use_a_SKU_that_supports_virtual_networks_73ef9241-5d81-4cd4-b483-8443d1730fe5/**'
+#      - 'policies/Configure_App_Configuration_to_disable_public_network_access_73290fa2-dfa7-4bbb-945d-a5e23b75df2c/**'
+#      - 'policies/Configure_Azure_Web_PubSub_Service_to_disable_public_network_access_5b1213e4-06e4-4ccc-81de-4201f2f7131a/**'
+#      - 'policies/Configure_network_security_groups_to_use_specific_workspace_for_traffic_analytics_5e1cd26a-5090-4fdb-9d6a-84a90335e22d/**'
+#      - 'policies/Public_network_access_should_be_disabled_for_PostgreSQL_flexible_servers_5e1de0e3-42cb-4ebc-a86d-61d0c619ca48/**'
+#      - 'policies/Storage_Accounts_should_use_a_virtual_network_service_endpoint_60d21c4f-21a3-4d94-85f4-b924e6aeeda4/**'
+#      - 'policies/Modify_Azure_SignalR_Service_resources_to_disable_public_network_access_62a3ae95-8169-403e-a2d2-b82141448092/**'
+#      - 'policies/App_Services_should_disable_public_network_access_63a0ac64-5d5f-4569-8a3d-df67cc1ce9d7/**'
+#      - 'policies/Audit_Windows_machines_network_connectivity_630ac30f-a234-4533-ac2d-e0df77acda51/**'
+#      - 'policies/Windows_machines_should_meet_requirements_for_Administrative_Templates_-_Network_67e010c1-640d-438e-a3a5-feaccb533a98/**'
+#      - 'policies/Log_Analytics_workspaces_should_block_log_ingestion_and_querying_from_public_networks_6c53d030-cc64-46f0-906d-2bc061cd1334/**'
+#      - 'policies/App_Service_Apps_should_be_injected_into_a_virtual_network_72d04c29-f87d-4575-9731-419ff16a2757/**'
+#      - 'policies/Configure_Azure_Synapse_workspaces_to_disable_public_network_access_5c8cad01-ef30-4891-b230-652dadb4876a/**'
+#      - 'policies/_Preview_Azure_Key_Vault_should_disable_public_network_access_55615ac9-af46-4a59-874e-391cc3dfb490/**'
+#      - 'policies/A_custom_IPsec/IKE_policy_must_be_applied_to_all_Azure_virtual_network_gateway_connections_50b83b09-03da-41c1-b656-c293c914862b/**'
+#      - 'policies/Configure_Cognitive_Services_accounts_to_disable_public_network_access_47ba1dd7-28d9-4b07-a8d5-9813bed64e0c/**'
+#      - 'policies/Azure_Cache_for_Redis_should_disable_public_network_access_470baccb-7e51-4549-8b1a-3e5be069f663/**'
+#      - 'policies/Azure_Machine_Learning_workspaces_should_disable_public_network_access_438c38d2-3772-465a-a9cc-7a6666a275ce/**'
+#      - 'policies/Windows_machines_should_meet_requirements_for_Security_Options_-_Network_Access_3ff60f98-7fa4-410a-9f7f-0b00f5afdbdd/**'
+#      - 'policies/App_Configuration_should_disable_public_network_access_3d9f5e4c-9947-4579-9539-2a7695fbc187/**'
+#      - 'policies/_Preview_Network_traffic_data_collection_agent_should_be_installed_on_Windows_virtual_machines_2f2ee1de-44aa-4762-b6bd-0893fc3f306d/**'
+#      - 'policies/Configure_Azure_Cache_for_Redis_to_disable_public_network_access_30b3dfa5-a70d-4c8e-bed6-0083858f663d/**'
+#      - 'policies/App_Service_apps_should_enable_outbound_non-RFC_1918_traffic_to_Azure_Virtual_Network_33228571-70a4-4fa1-8ca1-26d0aba8d6ef/**'
+#      - 'policies/MySQL_server_should_use_a_virtual_network_service_endpoint_3375856c-3824-4e0e-ae6a-79e011dd4c47/**'
+#      - 'policies/Storage_accounts_should_restrict_network_access_34c877ad-507e-4c82-993e-3452a6e0ad3c/**'
+#      - 'policies/Modify_-_Configure_Azure_Event_Grid_topics_to_disable_public_network_access_36ea4b4b-0f7f-4a54-89fa-ab18f555a172/**'
+#      - 'policies/Azure_Synapse_workspaces_should_disable_public_network_access_38d8df46-cf4e-4073-8e03-48c24b29de0d/**'
+#      - 'policies/PostgreSQL_server_should_use_a_virtual_network_service_endpoint_3c14b034-bcb6-4905-94e7-5b8e98a47b65/**'
+#      - 'policies/Gateway_subnets_should_not_be_configured_with_a_network_security_group_35f9c03a-cc27-418e-9c0c-539ff999d010/**'
+#      - 'policies/Network_Watcher_flow_logs_should_have_traffic_analytics_enabled_2f080164-9f4d-497e-9db6-416dc9f7b48a/**'
+#      - 'policies/Managed_workspace_virtual_network_on_Azure_Synapse_workspaces_should_be_enabled_2d9dbfa3-927b-4cf0-9d0f-08747f971650/**'
+#      - 'policies/Public_network_access_on_Azure_IoT_Hub_should_be_disabled_2d6830fb-07eb-48e7-8c4d-2a442b35f0fb/**'
+#      - 'policies/App_Service_should_use_a_virtual_network_service_endpoint_2d21331d-a4c2-4def-a9ad-ee4e1e023beb/**'
+#      - 'policies/Storage_accounts_should_restrict_network_access_using_virtual_network_rules_2a1a9cdf-e04d-429a-8416-3bfb72a1b26f/**'
+#      - 'policies/Configure_Azure_SQL_Server_to_disable_public_network_access_28b0b1e5-17ba-4963-a7a4-5a1ab4400a0b/**'
+#      - 'policies/Flow_logs_should_be_enabled_for_every_network_security_group_27960feb-a23c-4577-8d36-ef8b5f35e0be/**'
+#      - 'policies/Configure_Azure_Automation_accounts_to_disable_public_network_access_23b36a7c-9d26-4288-a8fd-c1d2fa284d8c/**'
+#      - 'policies/Windows_machines_should_meet_requirements_for_Security_Options_-_Network_Security_1221c620-d201-468c-81e7-2817e6107e84/**'
+#      - 'policies/_Preview_Azure_Key_Vault_Managed_HSM_should_disable_public_network_access_19ea9d63-adee-4431-a95e-1913c6c1c75f/**'
+#      - 'policies/Azure_Event_Grid_topics_should_disable_public_network_access_1adadefe-5f21-44f7-b931-a59b54ccdb45/**'
+#      - 'policies/Public_network_access_on_Azure_SQL_Database_should_be_disabled_1b8ca024-1d5c-4dec-8995-b1a932b41780/**'
+#      - 'policies/Application_Insights_components_should_block_log_ingestion_and_querying_from_public_networks_1bc02227-0cb6-4e11-8f53-eb0b22eab7e8/**'
+#      - 'policies/Public_network_access_on_Azure_Data_Factory_should_be_disabled_1cf164be-6819-4a50-b8fa-4bcaa4f98fb6/**'
+#      - 'policies/Public_network_access_should_be_disabled_for_Azure_File_Sync_21a8cd35-125e-4d13-b82d-2e19b7208bb7/**'
+#      - 'policies/Azure_SignalR_Service_should_disable_public_network_access_21a9766a-82a5-4747-abb5-650b6dbba6d0/**'
+#      - .github/workflows/manage-azure-policy-2b06a771.yml
+jobs:
+  apply-azure-policy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS_2b06a771}}
+        allow-no-subscriptions: true
+    - name: Create or Update Azure Policies
+      uses: azure/manage-azure-policy@v0
+      with:
+        paths: |
+          policies/Cognitive_Services_accounts_should_restrict_network_access_037eea7a-bd0a-46c5-9a66-03aea78705d3/**
+          policies/Cognitive_Services_accounts_should_disable_public_network_access_0725b4dd-7e76-479c-a735-68e7ee23d5ca/**
+          policies/Configure_Data_Factories_to_disable_public_network_access_08b1442b-7789-4130-8506-4f99a97226a7/**
+          policies/Adaptive_network_hardening_recommendations_should_be_applied_on_internet_facing_virtual_machines_08e6af2d-db70-460a-bfe9-d5bd474ba9d6/**
+          policies/Deploy_a_flow_log_resource_with_target_network_security_group_0db34a60-64f4-4bf6-bd44-f95c16cf34b9/**
+          policies/Modify_-_Configure_Azure_File_Sync_to_disable_public_network_access_0e07b2e9-6cd9-4c40-9ccb-52817b95133b/**
+          policies/Public_network_access_should_be_disabled_for_Container_registries_0fdf0491-d080-4575-b627-ad0e843cba0f/**
+          policies/Modify_-_Configure_Azure_IoT_Hubs_to_disable_public_network_access_114eec6e-5e59-4bad-999d-6eceeb39d582/**
+          policies/SQL_Server_Integration_Services_integration_runtimes_on_Azure_Data_Factory_should_be_joined_to_a_virtual_network_0088bc63-6dee-4a9c-9d29-91cfdc848952/**
+          policies/_Preview_Network_traffic_data_collection_agent_should_be_installed_on_Linux_virtual_machines_04c4380f-3fae-46e8-96c9-30193528f602/**
+          policies/Kubernetes_cluster_pods_should_only_use_approved_host_network_and_port_range_82985f06-dc18-4a48-bc1c-b9f4f0098cfe/**
+          policies/Public_network_access_should_be_disabled_for_MariaDB_servers_fdccbe47-f3e3-4213-ad5d-ea459b2fa077/**
+          policies/Azure_Event_Grid_domains_should_disable_public_network_access_f8f774be-6aee-492a-9e29-486ef81f3a68/**
+          policies/Internet-facing_virtual_machines_should_be_protected_with_network_security_groups_f6de0be7-9a8a-4b8a-b349-43cf02d22f7c/**
+          policies/Virtual_networks_should_use_specified_virtual_network_gateway_f1776c76-f58c-4245-a8d0-2b207198dc8b/**
+          policies/API_Management_services_should_use_a_virtual_network_ef619a2c-cc4d-4d03-b2ba-8c94a834d85b/**
+          policies/Azure_Cognitive_Search_services_should_disable_public_network_access_ee980b6d-0eca-4501-8d54-f6290fd512c3/**
+          policies/Key_Vault_should_use_a_virtual_network_service_endpoint_ea4d6841-2173-4317-9747-ff522a45120f/**
+          policies/Configure_network_security_groups_to_enable_traffic_analytics_e920df7f-9a64-4066-9b58-52684c02a091/**
+          policies/Subnets_should_be_associated_with_a_Network_Security_Group_e71308d3-144b-4262-b144-efdc3cc90517/**
+          policies/Cosmos_DB_should_use_a_virtual_network_service_endpoint_e0a2b1a3-f7f9-4569-807f-2a9edebdf4d9/**
+          policies/MariaDB_server_should_use_a_virtual_network_service_endpoint_dfbd9a64-6114-48de-a47d-90574dc2e489/**
+          policies/API_Management_services_should_disable_public_network_access_df73bd95-24da-4a4f-96b9-4e8b94b402bd/**
+          policies/Configure_Azure_Arc_Private_Link_Scopes_to_disable_public_network_access_de0bc8ea-76e2-4fe2-a288-a07556d0e9c4/**
+          policies/Configure_Azure_Application_Insights_components_to_disable_public_network_access_for_log_ingestion_and_querying_dddfa1af-dcd6-42f4-b5b0-e1db01e0b405/**
+          policies/Configure_CosmosDB_accounts_to_disable_public_network_access_da69ba51-aaf1-41e5-8651-607cd0b37088/**
+          policies/Public_network_access_should_be_disabled_for_MySQL_servers_d9844e8a-1437-4aeb-a32c-0c992f056095/**
+          policies/IoT_Hub_device_provisioning_service_instances_should_disable_public_network_access_d82101f3-f3ce-4fc5-8708-4c09f4009546/**
+          policies/Windows_machines_should_meet_requirements_for_Security_Options_-_Microsoft_Network_Client_d6c69680-54f0-4349-af10-94dd05f4225e/**
+          policies/Event_Hub_should_use_a_virtual_network_service_endpoint_d63edb4a-c612-454d-b47d-191a724fcbf0/**
+          policies/Virtual_machines_should_be_connected_to_an_approved_virtual_network_d416745a-506c-48b6-8ab1-83cb814bcaa3/**
+          policies/Configure_Azure_Log_Analytics_workspaces_to_disable_public_network_access_for_log_ingestion_and_querying_d3ba9c42-9dd5-441a-957c-274031c750c0/**
+          policies/Container_registries_should_not_allow_unrestricted_network_access_d0793b48-0edc-4296-a390-4c75d1bdfd71/**
+          policies/Windows_machines_should_meet_requirements_for_Security_Options_-_Microsoft_Network_Server_caf2d518-f029-4f6b-833b-d7081702f253/**
+          policies/Azure_HDInsight_clusters_should_be_injected_into_a_virtual_network_b0ab5b05-1c98-40f7-bb9e-dc568e41b501/**
+          policies/Management_ports_of_virtual_machines_should_be_protected_with_just-in-time_network_access_control_b0f33259-77d7-4c9e-aac6-3aabcfae693c/**
+          policies/Public_network_access_should_be_disabled_for_PostgreSQL_servers_b52376f7-9612-48a1-81cd-1ffe4b61032c/**
+          policies/Non-internet-facing_virtual_machines_should_be_protected_with_network_security_groups_bb91dfba-c30d-4263-9add-9c2384e659a6/**
+          policies/Azure_Web_PubSub_Service_should_disable_public_network_access_bf45113f-264e-4a87-88f9-29ac8a0aca6a/**
+          policies/Flow_logs_should_be_configured_for_every_network_security_group_c251913d-7d24-4958-af87-478ed3b9ba41/**
+          policies/_Preview_Container_Registry_should_use_a_virtual_network_service_endpoint_c4857be7-912a-4c75-87e6-e30292bcdf78/**
+          policies/Public_network_access_should_be_disabled_for_MySQL_flexible_servers_c9299215-ae47-4f50-9c54-8a392f68a052/**
+          policies/Network_Watcher_should_be_enabled_b6e2945c-0b7b-40f5-9233-7a5323b5cdc6/**
+          policies/Deploy_Diagnostic_Settings_for_Network_Security_Groups_c9c29499-c1d1-4195-99bd-2ec9e3a9dc89/**
+          policies/Azure_Spring_Cloud_should_use_network_injection_af35e2a4-ef96-44e7-a9ae-853dd97032c4/**
+          policies/SQL_Server_should_use_a_virtual_network_service_endpoint_ae5d2f14-d830-42b6-9899-df6cfe9c71a3/**
+          policies/_Preview_Configure_key_vaults_to_disable_public_network_access_ac673a9a-f77d-4846-b2d8-a57f8e1c01dc/**
+          policies/Deploy_network_watcher_when_virtual_networks_are_created_a9b99dd8-06c5-4317-8629-9d86a3c6e7d9/**
+          policies/Configure_Container_registries_to_disable_public_network_access_a3701552-92ea-433e-9d17-33b7f1208fc9/**
+          policies/Configure_Azure_Machine_Learning_workspaces_to_disable_public_network_access_a10ee784-7409-4941-b091-663697637c0f/**
+          policies/All_network_ports_should_be_restricted_on_network_security_groups_associated_to_your_virtual_machine_9daedab3-fb2d-461e-b861-71790eead4f6/**
+          policies/Configure_Azure_Cognitive_Search_services_to_disable_public_network_access_9cee519f-d9c1-4fd9-9f79-24ec3449ed30/**
+          policies/Virtual_network_injection_should_be_enabled_for_Azure_Data_Explorer_9ad2fd1f-b25f-47a2-aa01-1a5a779e6413/**
+          policies/Configure_diagnostic_settings_for_Azure_Network_Security_Groups_to_Log_Analytics_workspace_98a2e215-5382-489e-bd29-32e7190a39ba/**
+          policies/Automation_accounts_should_disable_public_network_access_955a914f-bf86-4f0e-acd5-e0766b0efcb6/**
+          policies/Virtual_networks_should_be_protected_by_Azure_DDoS_Protection_Standard_94de2ad3-e0c1-4caf-ad78-5d47bbc83d3d/**
+          policies/Azure_Media_Services_accounts_should_disable_public_network_access_8bfe3603-0888-404a-87ff-5c1b6b4cc5e3/**
+          policies/Azure_Container_Instance_container_group_should_deploy_into_a_virtual_network_8af8f826-edcb-4178-b35f-851ea6fea615/**
+          policies/Azure_Arc_Private_Link_Scopes_should_disable_public_network_access_898f2439-3333-4713-af25-f1d78bc50556/**
+          policies/Modify_-_Configure_Azure_Event_Grid_domains_to_disable_public_network_access_898e9824-104c-4965-8e0e-5197588fa5d4/**
+          policies/Network_interfaces_should_disable_IP_forwarding_88c0b9da-ce96-4b03-9635-f29a937e2900/**
+          policies/_Preview_Configure_Azure_Key_Vault_Managed_HSM_to_disable_public_network_access_84d327c3-164a-4685-b453-900478614456/**
+          policies/Configure_IoT_Hub_device_provisioning_service_instances_to_disable_public_network_access_859dfc91-ea35-43a6-8256-31271c363794/**
+          policies/Managed_disks_should_disable_public_network_access_8405fdab-1faf-48aa-b702-999c9c172094/**
+          policies/Configure_managed_disks_to_disable_public_network_access_8426280e-b5be-43d9-979e-653d12a08638/**
+          policies/Network_interfaces_should_not_have_public_IPs_83a86a26-fd1f-447c-b59d-e51f44264114/**
+          policies/Configure_App_Services_to_disable_public_network_access_81dff7c0-4020-4b58-955d-c076a2136b56/**
+          policies/Azure_Cache_for_Redis_should_reside_within_a_virtual_network_7d092e0a-7acd-40d2-a975-dca21cae48c4/**
+          policies/Configure_API_Management_services_to_disable_public_network_access_7ca8c8ac-3a6e-493d-99ba-c5fa35347ff2/**
+          policies/Azure_Cosmos_DB_should_disable_public_network_access_797b37f7-06b8-444c-b1ad-fc62867f335a/**
+          policies/Audit_Azure_Machine_Learning_Compute_Cluster_and_Instance_is_behind_virtual_network_7804b5c7-01dc-4723-969b-ae300cc07ff1/**
+          policies/Virtual_network_firewall_rule_on_Azure_SQL_Database_should_be_enabled_to_allow_traffic_from_the_specified_subnet_77e8b146-0078-4fb2-b002-e112381199f0/**
+          policies/Public_network_access_should_be_disabled_for_Batch_accounts_74c5a0ae-5e48-4738-b093-65e23a060488/**
+          policies/API_Management_service_should_use_a_SKU_that_supports_virtual_networks_73ef9241-5d81-4cd4-b483-8443d1730fe5/**
+          policies/Configure_App_Configuration_to_disable_public_network_access_73290fa2-dfa7-4bbb-945d-a5e23b75df2c/**
+          policies/Configure_Azure_Web_PubSub_Service_to_disable_public_network_access_5b1213e4-06e4-4ccc-81de-4201f2f7131a/**
+          policies/Configure_network_security_groups_to_use_specific_workspace_for_traffic_analytics_5e1cd26a-5090-4fdb-9d6a-84a90335e22d/**
+          policies/Public_network_access_should_be_disabled_for_PostgreSQL_flexible_servers_5e1de0e3-42cb-4ebc-a86d-61d0c619ca48/**
+          policies/Storage_Accounts_should_use_a_virtual_network_service_endpoint_60d21c4f-21a3-4d94-85f4-b924e6aeeda4/**
+          policies/Modify_Azure_SignalR_Service_resources_to_disable_public_network_access_62a3ae95-8169-403e-a2d2-b82141448092/**
+          policies/App_Services_should_disable_public_network_access_63a0ac64-5d5f-4569-8a3d-df67cc1ce9d7/**
+          policies/Audit_Windows_machines_network_connectivity_630ac30f-a234-4533-ac2d-e0df77acda51/**
+          policies/Windows_machines_should_meet_requirements_for_Administrative_Templates_-_Network_67e010c1-640d-438e-a3a5-feaccb533a98/**
+          policies/Log_Analytics_workspaces_should_block_log_ingestion_and_querying_from_public_networks_6c53d030-cc64-46f0-906d-2bc061cd1334/**
+          policies/App_Service_Apps_should_be_injected_into_a_virtual_network_72d04c29-f87d-4575-9731-419ff16a2757/**
+          policies/Configure_Azure_Synapse_workspaces_to_disable_public_network_access_5c8cad01-ef30-4891-b230-652dadb4876a/**
+          policies/_Preview_Azure_Key_Vault_should_disable_public_network_access_55615ac9-af46-4a59-874e-391cc3dfb490/**
+          policies/A_custom_IPsec/IKE_policy_must_be_applied_to_all_Azure_virtual_network_gateway_connections_50b83b09-03da-41c1-b656-c293c914862b/**
+          policies/Configure_Cognitive_Services_accounts_to_disable_public_network_access_47ba1dd7-28d9-4b07-a8d5-9813bed64e0c/**
+          policies/Azure_Cache_for_Redis_should_disable_public_network_access_470baccb-7e51-4549-8b1a-3e5be069f663/**
+          policies/Azure_Machine_Learning_workspaces_should_disable_public_network_access_438c38d2-3772-465a-a9cc-7a6666a275ce/**
+          policies/Windows_machines_should_meet_requirements_for_Security_Options_-_Network_Access_3ff60f98-7fa4-410a-9f7f-0b00f5afdbdd/**
+          policies/App_Configuration_should_disable_public_network_access_3d9f5e4c-9947-4579-9539-2a7695fbc187/**
+          policies/_Preview_Network_traffic_data_collection_agent_should_be_installed_on_Windows_virtual_machines_2f2ee1de-44aa-4762-b6bd-0893fc3f306d/**
+          policies/Configure_Azure_Cache_for_Redis_to_disable_public_network_access_30b3dfa5-a70d-4c8e-bed6-0083858f663d/**
+          policies/App_Service_apps_should_enable_outbound_non-RFC_1918_traffic_to_Azure_Virtual_Network_33228571-70a4-4fa1-8ca1-26d0aba8d6ef/**
+          policies/MySQL_server_should_use_a_virtual_network_service_endpoint_3375856c-3824-4e0e-ae6a-79e011dd4c47/**
+          policies/Storage_accounts_should_restrict_network_access_34c877ad-507e-4c82-993e-3452a6e0ad3c/**
+          policies/Modify_-_Configure_Azure_Event_Grid_topics_to_disable_public_network_access_36ea4b4b-0f7f-4a54-89fa-ab18f555a172/**
+          policies/Azure_Synapse_workspaces_should_disable_public_network_access_38d8df46-cf4e-4073-8e03-48c24b29de0d/**
+          policies/PostgreSQL_server_should_use_a_virtual_network_service_endpoint_3c14b034-bcb6-4905-94e7-5b8e98a47b65/**
+          policies/Gateway_subnets_should_not_be_configured_with_a_network_security_group_35f9c03a-cc27-418e-9c0c-539ff999d010/**
+          policies/Network_Watcher_flow_logs_should_have_traffic_analytics_enabled_2f080164-9f4d-497e-9db6-416dc9f7b48a/**
+          policies/Managed_workspace_virtual_network_on_Azure_Synapse_workspaces_should_be_enabled_2d9dbfa3-927b-4cf0-9d0f-08747f971650/**
+          policies/Public_network_access_on_Azure_IoT_Hub_should_be_disabled_2d6830fb-07eb-48e7-8c4d-2a442b35f0fb/**
+          policies/App_Service_should_use_a_virtual_network_service_endpoint_2d21331d-a4c2-4def-a9ad-ee4e1e023beb/**
+          policies/Storage_accounts_should_restrict_network_access_using_virtual_network_rules_2a1a9cdf-e04d-429a-8416-3bfb72a1b26f/**
+          policies/Configure_Azure_SQL_Server_to_disable_public_network_access_28b0b1e5-17ba-4963-a7a4-5a1ab4400a0b/**
+          policies/Flow_logs_should_be_enabled_for_every_network_security_group_27960feb-a23c-4577-8d36-ef8b5f35e0be/**
+          policies/Configure_Azure_Automation_accounts_to_disable_public_network_access_23b36a7c-9d26-4288-a8fd-c1d2fa284d8c/**
+          policies/Windows_machines_should_meet_requirements_for_Security_Options_-_Network_Security_1221c620-d201-468c-81e7-2817e6107e84/**
+          policies/_Preview_Azure_Key_Vault_Managed_HSM_should_disable_public_network_access_19ea9d63-adee-4431-a95e-1913c6c1c75f/**
+          policies/Azure_Event_Grid_topics_should_disable_public_network_access_1adadefe-5f21-44f7-b931-a59b54ccdb45/**
+          policies/Public_network_access_on_Azure_SQL_Database_should_be_disabled_1b8ca024-1d5c-4dec-8995-b1a932b41780/**
+          policies/Application_Insights_components_should_block_log_ingestion_and_querying_from_public_networks_1bc02227-0cb6-4e11-8f53-eb0b22eab7e8/**
+          policies/Public_network_access_on_Azure_Data_Factory_should_be_disabled_1cf164be-6819-4a50-b8fa-4bcaa4f98fb6/**
+          policies/Public_network_access_should_be_disabled_for_Azure_File_Sync_21a8cd35-125e-4d13-b82d-2e19b7208bb7/**
+          policies/Azure_SignalR_Service_should_disable_public_network_access_21a9766a-82a5-4747-abb5-650b6dbba6d0/**

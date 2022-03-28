@@ -1,0 +1,25 @@
+{
+ "sku": {
+  "name": "A0",
+  "tier": "Free"
+ },
+ "properties": {
+  "displayName": "Cognitive Services accounts should disable public network access",
+  "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/0725b4dd-7e76-479c-a735-68e7ee23d5ca",
+  "scope": "/subscriptions/237fd56a-b684-45b7-adb8-ce3414009e13",
+  "notScopes": [],
+  "parameters": {},
+  "metadata": {
+   "assignedBy": "f8922df9-1040-4f96-8149-228477d002f1 8ad1ab51-be02-496b-9858-64b3ae5ea1d3",
+   "parameterScopes": {},
+   "createdBy": "bd61b225-a49d-432f-9e41-34ed02fa6f25",
+   "createdOn": "2022-03-28T01:59:11.556833Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "enforcementMode": "Default"
+ },
+ "id": "/subscriptions/237fd56a-b684-45b7-adb8-ce3414009e13/providers/Microsoft.Authorization/policyAssignments/cecc4a862c994d1ea6eff7a4",
+ "type": "Microsoft.Authorization/policyAssignments",
+ "name": "cecc4a862c994d1ea6eff7a4"
+}
